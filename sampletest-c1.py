@@ -9,15 +9,17 @@
 #handle = open(name)
 
 file = raw_input("Enter file:")
-if len(file) < 1 : name = "mbox-short.txt"
+if len(file) < 1 : name = "sample-test_c1.txt"
 fhand = open(file)
 relIDdict = dict()
 IDcount = 0
+badcount = -1 #set to -1 because I haven't figured out how to escape the header row yet
 for line in fhand:
 	line = line.rstrip()
-	line = line.strip()
+	#line = line.strip()
 	#ignore all lines except lines that start with "1"
 	if not line.startswith('"1'):
+		badcount = badcount + 1
 		continue
 	splitline = line.split("|")
 	relID = splitline[37]
@@ -28,9 +30,13 @@ for line in fhand:
 lst = list()
 for key, val in relIDdict.items():
 	lst.append((key, val))
-#sort the tuples by hour from highest to lowest
-lst.sort()
-#and print out the list = done!
-for key, val in lst[:]:
-	print key, val
-print 'There are', IDcount, 'unique RelationshipIDs in this file.'
+
+with open('output.txt', 'w') as f:
+	f.write('\n'.join('"%s | "%s' % x for x in lst))
+	#for key, val in lst[:]:
+	#	relIDstring = str(key)
+	#	f.write(relIDstring, val)
+
+print badcount, 'bad lines were ignored'
+print 'There are', IDcount, 'total RelationshipIDs in this file.'
+print len(lst), 'of them are unique.'
