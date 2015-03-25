@@ -9,15 +9,14 @@
 #handle = open(name)
 
 file = raw_input("Enter file:")
-if len(file) < 1 : name = "sample-test_c1.txt"
+if len(file) < 1 : name = "sampletest_c2.txt"
 fhand = open(file)
 relIDdict = dict()
 IDcount = 0
 badcount = -1 #set to -1 because I haven't figured out how to escape the header row yet
 for line in fhand:
-	line = line.rstrip()
-	#line = line.strip()
-	#ignore all lines except lines that start with "1"
+	line = line.strip()
+	#ignore all lines except lines that start with "1
 	if not line.startswith('"1'):
 		badcount = badcount + 1
 		continue
@@ -33,6 +32,7 @@ for key, val in relIDdict.items():
 
 with open('output.txt', 'w') as f:
 	f.write('\n'.join('"%s | "%s' % x for x in lst))
+	#deprecated code
 	#for key, val in lst[:]:
 	#	relIDstring = str(key)
 	#	f.write(relIDstring, val)
