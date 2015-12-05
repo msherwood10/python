@@ -1,0 +1,1 @@
+print "This is a screenshot for assignment 1."
