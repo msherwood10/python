@@ -1,8 +1,9 @@
 import urllib
 import json
 
-serviceurl = 'http://python-data.dr-chuck.net/geojson?'
-#serviceurl = 'http://maps.googleapis.com/maps/api/geocode/json?' #uncomment to use Google api
+#serviceurl = 'http://python-data.dr-chuck.net/geojson?'
+serviceurl = 'http://maps.googleapis.com/maps/api/geocode/json?' #uncomment to use Google api
+#modified to use google API key
 
 address = raw_input('Enter location: ')
 
